@@ -1,0 +1,73 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Testing
+coverage/
+*.lcov
+.nyc_output
+
+# Build outputs
+dist/
+build/
+*.tsbuildinfo
+.turbo/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Package manager
+.pnpm-store/
+.yarn/
+
+# Runtime
+.cache/
+
+# DSH runtime artifacts (journal, codex state, credentials copy)
+.dsh/runtime/
+
+# Blind-evaluation mappings (which letter is which role version); written next
+# to an evidence bundle, wherever --out puts it
+*.blinding.json
+
+# Agent runtime directories
+.agent-teams/
+
+# Personal Claude Code settings and discovery links; project-owned skills
+# live under .dsh/skills/ and stay tracked there
+.claude/*
+
+# Host-project role packs, layers and policy overrides are intentionally private.
+.dsh/*
+!.dsh/
+!.dsh/policy.yaml.example
+!.dsh/skills/
+!.dsh/skills/dsh-author-role-or-workflow/
+!.dsh/skills/dsh-author-role-or-workflow/SKILL.md

@@ -1,0 +1,8 @@
+# Orchestrator bundle for DSH profiles.
+- insert:
+    - id: dsh-orchestrator
+      name: '@dsh/orchestrator'
+      config:
+        drainTimeoutMs: 5000
+        openTimeoutMs: 5000
+        globalMaxParallel: 3

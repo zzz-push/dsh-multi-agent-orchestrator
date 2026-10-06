@@ -1,0 +1,115 @@
+{
+  "name": "@dsh/agent-manager",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./dist/index.js"
+    },
+    "./channel": {
+      "types": "./src/channel/types.ts",
+      "default": "./dist/channel/types.js"
+    },
+    "./channel/claude-code": {
+      "types": "./src/channel/claude-code.ts",
+      "default": "./dist/channel/claude-code.js"
+    },
+    "./channel/codex": {
+      "types": "./src/channel/codex.ts",
+      "default": "./dist/channel/codex.js"
+    },
+    "./channel/codex-websocket": {
+      "types": "./src/channel/codex-websocket.ts",
+      "default": "./dist/channel/codex-websocket.js"
+    },
+    "./channel/tui": {
+      "types": "./src/channel/tui.ts",
+      "default": "./dist/channel/tui.js"
+    },
+    "./client": "./dist/client.js",
+    "./journal": {
+      "types": "./src/journal/types.ts",
+      "default": "./dist/journal/types.js"
+    },
+    "./journal/reader": {
+      "types": "./src/journal/reader.ts",
+      "default": "./dist/journal/reader.js"
+    },
+    "./journal/writer": {
+      "types": "./src/journal/writer.ts",
+      "default": "./dist/journal/writer.js"
+    },
+    "./role": {
+      "types": "./src/role/types.ts",
+      "default": "./dist/role/types.js"
+    },
+    "./role/file-provider": {
+      "types": "./src/role/file-provider.ts",
+      "default": "./dist/role/file-provider.js"
+    },
+    "./workflow-skill/file-provider": {
+      "types": "./src/workflow-skill/file-provider.ts",
+      "default": "./dist/workflow-skill/file-provider.js"
+    },
+    "./workflow-skill/extract-role-ids": {
+      "types": "./src/workflow-skill/extract-role-ids.ts",
+      "default": "./dist/workflow-skill/extract-role-ids.js"
+    },
+    "./workflow-skill/role-resolver": {
+      "types": "./src/workflow-skill/role-resolver.ts",
+      "default": "./dist/workflow-skill/role-resolver.js"
+    },
+    "./workflow-skill/roles-checklist": {
+      "types": "./src/workflow-skill/roles-checklist.ts",
+      "default": "./dist/workflow-skill/roles-checklist.js"
+    },
+    "./workflow-skill/skill-snapshot": {
+      "types": "./src/workflow-skill/skill-snapshot.ts",
+      "default": "./dist/workflow-skill/skill-snapshot.js"
+    },
+    "./workflow-skill/start-workflow": {
+      "types": "./src/workflow-skill/start-workflow.ts",
+      "default": "./dist/workflow-skill/start-workflow.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-runtime",
+        "@deepseek-ai/dsh-client-ui-layout"
+      ],
+      "platform": "web"
+    }
+  },
+  "scripts": {
+    "build": "pnpm build:host && pnpm build:client",
+    "build:host": "tsc -p tsconfig.json",
+    "build:client": "tsc -p tsconfig.client.json --noEmit && tsdown",
+    "test": "vitest run --passWithNoTests"
+  },
+  "dependencies": {
+    "@deepseek-ai/cordis": "^4.0.1",
+    "@dsh/core": "workspace:*",
+    "@dsh/spec": "workspace:*",
+    "ws": "^8.18.3",
+    "yaml": "^2.4.2",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@testing-library/react": "^16.3.3",
+    "@types/react": "~18.3.1",
+    "@types/react-dom": "~18.3.7",
+    "@types/ws": "^8.5.13",
+    "jsdom": "^25.0.1",
+    "react": "^18.3.1",
+    "react-dom": "~18.3.1",
+    "tsdown": "0.22.2"
+  }
+}

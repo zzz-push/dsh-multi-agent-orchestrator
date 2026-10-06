@@ -1,0 +1,6 @@
+# EventBus communication bundle for DSH profiles.
+- insert:
+    - id: dsh-comm-eventbus
+      name: '@dsh/comm-eventbus'
+      config:
+        maxListeners: 10

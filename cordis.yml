@@ -1,0 +1,24 @@
+# DSH Multi-Agent Orchestrator plugin composition.
+# Loads the three @dsh/* Harness plugins (see README.md, "Use it inside DeepSeek Harness").
+# Entry fields follow the cordis-plugin-loader contract:
+# id / name / config / inject / disabled / isolate / group.
+plugins:
+  # 1. Load the orchestrator plugin (registry + scheduler services)
+  - name: '@dsh/orchestrator'
+    config:
+      drainTimeoutMs: 5000
+      openTimeoutMs: 5000
+      globalMaxParallel: 3
+
+  # 2. Load the EventBus communication provider
+  - name: '@dsh/comm-eventbus'
+    config:
+      maxListeners: 10
+
+  # 3. Load the Agent Manager (sub-agent process lifecycle)
+  - name: '@dsh/agent-manager'
+    config:
+      rolesDir: .dsh/roles
+      journalFile: .dsh/runtime/agent-events.jsonl
+      claudeCommand: claude
+      codexCommand: codex

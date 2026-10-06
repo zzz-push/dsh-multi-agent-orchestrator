@@ -1,0 +1,31 @@
+{
+  "name": "@dsh/comm-eventbus",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": { "types": "./src/index.ts", "default": "./dist/index.js" },
+    "./provider": { "types": "./src/provider.ts", "default": "./dist/provider.js" },
+    "./port": { "types": "./src/port.ts", "default": "./dist/port.js" },
+    "./emitter": { "types": "./src/emitter.ts", "default": "./dist/emitter.js" },
+    "./config": { "types": "./src/config.ts", "default": "./dist/config.js" },
+    "./cordis": { "types": "./src/cordis.ts", "default": "./dist/cordis.js" },
+    "./plugin": { "types": "./src/plugin.ts", "default": "./dist/plugin.js" },
+    "./package.json": "./package.json"
+  },
+  "dsh": { "bundle": { "patch": "./cordis.patch.yml" } },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "vitest run --passWithNoTests"
+  },
+  "dependencies": {
+    "@deepseek-ai/cordis": "^4.0.1",
+    "@dsh/communication": "workspace:*",
+    "@dsh/spec": "workspace:*",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@dsh/orchestrator": "workspace:*"
+  }
+}

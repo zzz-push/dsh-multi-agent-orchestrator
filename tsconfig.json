@@ -1,0 +1,15 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./packages/spec" },
+    { "path": "./packages/communication" },
+    { "path": "./packages/orchestrator" },
+    { "path": "./packages/agent-manager" },
+    { "path": "./packages/comm-eventbus" },
+    { "path": "./packages/core" },
+    { "path": "./packages/workspace-git" },
+    { "path": "./packages/role-eval" },
+    { "path": "./packages/harness-runtime" },
+    { "path": "./packages/client" }
+  ]
+}

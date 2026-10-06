@@ -1,0 +1,22 @@
+# Agent manager bundle layer. Nothing here is specific to one machine:
+# relative paths resolve against the repository the plugin is linked from
+# (not DSH's working directory), and commands are looked up on PATH.
+#
+# Machine-specific settings go in your profile's own patch layer,
+# ~/.dsh/profiles/<profile>/cordis.patch.yml. An entry there replaces this
+# whole `config`, so list every key you want, for example when the DSH app is
+# started without your shell's PATH and cannot find `claude`:
+#
+#   - id: dsh-agent-manager
+#     name: '@dsh/agent-manager'
+#     config:
+#       claudeCommand: /absolute/path/to/claude
+#       codexCommand: /absolute/path/to/codex
+#
+# Every key and its default is documented in the package README.
+- insert:
+    - id: dsh-agent-manager
+      name: '@dsh/agent-manager'
+      config:
+        rolesDir: .dsh/roles
+        journalFile: .dsh/runtime/agent-events.jsonl

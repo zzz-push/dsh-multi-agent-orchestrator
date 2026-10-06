@@ -1,0 +1,24 @@
+{
+  "name": "@dsh/communication",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": { "types": "./src/index.ts", "default": "./dist/index.js" },
+    "./types": { "types": "./src/types.ts", "default": "./dist/types.js" },
+    "./errors": { "types": "./src/errors.ts", "default": "./dist/errors.js" },
+    "./registry": { "types": "./src/registry.ts", "default": "./dist/registry.js" },
+    "./lease-manager": { "types": "./src/lease-manager.ts", "default": "./dist/lease-manager.js" },
+    "./capability-checker": { "types": "./src/capability-checker.ts", "default": "./dist/capability-checker.js" },
+    "./compatibility": { "types": "./src/compatibility.ts", "default": "./dist/compatibility.js" },
+    "./messages": { "types": "./src/messages.ts", "default": "./dist/messages.js" }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "vitest run --passWithNoTests"
+  },
+  "dependencies": {
+    "@dsh/spec": "workspace:*"
+  }
+}

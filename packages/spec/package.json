@@ -1,0 +1,21 @@
+{
+  "name": "@dsh/spec",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": { "types": "./src/index.ts", "default": "./dist/index.js" },
+    "./types": { "types": "./src/types.ts", "default": "./dist/types.js" },
+    "./communication": { "types": "./src/communication.ts", "default": "./dist/communication.js" },
+    "./capabilities": { "types": "./src/capabilities.ts", "default": "./dist/capabilities.js" },
+    "./errors": { "types": "./src/errors.ts", "default": "./dist/errors.js" },
+    "./role": { "types": "./src/role.ts", "default": "./dist/role.js" },
+    "./skill-snapshot": { "types": "./src/skill-snapshot.ts", "default": "./dist/skill-snapshot.js" },
+    "./workflow-skill": { "types": "./src/workflow-skill.ts", "default": "./dist/workflow-skill.js" }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "vitest run --passWithNoTests"
+  }
+}

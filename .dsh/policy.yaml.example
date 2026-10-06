@@ -1,0 +1,53 @@
+# DSH 项目安全策略配置
+# 复制为 .dsh/policy.yaml 并根据项目需求调整
+#
+# 每一类的写法有三种含义：
+#   列出若干项 = 只允许这些（角色请求别的会被降级到第一个允许的，并记一条 policy.violation）
+#   []         = 一个都不允许；需要它的 agent 不会启动（PolicyError）
+#   删掉该字段 = 全部允许（allowedShellPatterns 例外：删掉 = 全部禁止）
+# 角色没声明沙箱时，用 allowedSandboxModes 的第一项（所以把最严的放第一个）。
+#
+# 目前真正约束 agent 的只有 harness、沙箱模式和 MCP 服务器。
+# allowedFileOperations / allowedShellPatterns 只拿来核对角色的声明并记录违规，
+# 不限制 agent 实际能做什么——要限制 agent，靠沙箱模式。
+
+# 允许的 harness
+allowedHarnesses:
+  - codex
+  - claude-code
+
+# 允许的 MCP 服务器（角色还必须自己声明，并且有启动定义）
+allowedMcpServers:
+  - example-context
+  # - filesystem
+  # - notion
+
+# 允许的文件操作（目前只核对、不执行，见上）
+allowedFileOperations:
+  - read
+  - list
+  # - write
+
+# 允许的 shell 命令模式（正则，匹配角色声明的每条命令原文；目前只核对、不执行，见上）
+# 不加 `$` 结尾的模式是前缀匹配：`^git log` 也匹配 `git log; 其他命令`
+allowedShellPatterns:
+  - "^example-context( [\\w./-]+)*$"   # example context provider CLI
+  - "^git status$"
+  - "^git log( [\\w./-]+)*$"
+  - "^git diff( [\\w./-]+)*$"
+  # - "^pnpm (build|test|typecheck)$"
+
+# 允许的沙箱模式。codex：read-only / workspace-write / danger-full-access；
+# claude-code：read-only（映射为 dontAsk）、workspace-write（映射为 acceptEdits + 系统沙箱）以及它自己的权限模式
+# acceptEdits / plan / dontAsk / manual / auto / bypassPermissions。
+allowedSandboxModes:
+  - read-only
+  - workspace-write
+  # - danger-full-access   # 不受限，慎用
+  # - bypassPermissions    # 不受限，慎用
+
+# 默认值（当角色未声明时使用；defaults.harness 不在 allowedHarnesses 里时不会被用作降级目标）
+defaults:
+  harness: codex
+  chatTimeoutMs: 600000
+  interactionMode: headless
